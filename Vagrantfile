@@ -1,20 +1,21 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
 $script = <<-SCRIPT
 
-set -ex
-cp -R /vagrant/www /home/vagrant && mv /home/vagrant/www /home/vagrant/hello-world
-cd /home/vagrant/hello-world
-# starting ember
-echo starting ember...
-npm install
+pushd /vagrant/www
+systemctl stop ember
+
+[ -d /usr/lib/node_modules/ember-cli ] || npm install -g --no-optional ember-cli
+[ -d /usr/lib/node_modules/ember-data ] || npm install -g --no-optional ember-data
+
+npm link ember-cli
+npm link ember-data
+
+cp /vagrant/ember.service /etc/systemd/system/ember.service
+systemctl daemon-reload
 systemctl start ember
-# check if the previous command succeeded
-if [ $? -eq 0 ]; then
-    echo Ember started
-else
-    echo Ember not started
-    exit 1
-fi
-set +x
+
 SCRIPT
 
 Vagrant.configure("2") do |config|

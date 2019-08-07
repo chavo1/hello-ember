@@ -1,0 +1,7 @@
+.vagrant/
+node_modules/
+npm_install.log
+package-lock.json
+www-0.0.0.tgz
+www/hello-world-0.0.0.tgz
+www/www-0.0.0.tgz
