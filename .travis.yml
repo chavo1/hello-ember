@@ -19,6 +19,7 @@ env:
     - JOBS=1
 
 script:
+  - pushd www/
   - npm install
   - npm ci
   - npm test
