@@ -12,7 +12,6 @@ systemctl stop ember
 npm link ember-cli
 npm link ember-data
 
-cp /vagrant/ember.service /etc/systemd/system/ember.service
 systemctl daemon-reload
 systemctl start ember
 
