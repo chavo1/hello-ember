@@ -18,5 +18,5 @@ cd hello-ember
 vagrant up
 ```
 ## In order to build your custom Vagrant box you will need [THIS](https://github.com/chavo1/packer-vagrant-ember) GitHub repo.
-## To deploy the project in AWS you should prepare an AWS custom AMI, please find it [HERE](https://github.com/chavo1/packer-ami-ember)
+## To deploy the project in AWS you should prepare an AWS custom AMI, please find the code [HERE](https://github.com/chavo1/packer-ami-ember)
 ## The Terraform code to deploy in AWS is available [HERE](https://github.com/chavo1/terraform-ember-aws)
