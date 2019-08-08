@@ -1,29 +1,35 @@
----
 language: node_js
 node_js:
-  - "10"
-
+- '10'
 sudo: false
 dist: bionic
-
 addons:
   chrome: stable
-
 cache:
   directories:
-    - $HOME/.npm
-
+  - "$HOME/.npm"
 env:
   global:
-    # See https://git.io/vdao3 for details.
-    - JOBS=1
-
+  - JOBS=1
 script:
-  - pushd www/
-  - npm install
-  - npm ci
-  - npm test
-  - npm start &
-  - sleep 20
-  - bash test.sh
+- pushd www/
+- npm install
+- npm ci
+- npm test
+- npm start &
+- sleep 20
+- bash test.sh
+- popd
 
+before_deploy:
+- zip -r9 www.zip www/
+
+deploy:
+  provider: releases
+  api_key:
+    secure: hHdGJBrzAaWRCSubuSisiO2qxd4d0Nk5ogQTPqdvMX91At/6p3NG5jFVsANrkyBFF8YNEnTFhIfDkgZsjRuR/V+GkR8KHqNHNP/A4BfwtqerDtmt2H3Pjx3motI/gcVpmGNgfKcV2yZPsvYfm3HeFEtoiZLNj8hp/m8jRlonx4lI5Z72b4DmcjEbueIPDU1Nn19wtdsQwL0X1IsUeSUZ6vSwyjNkz4FMoVRQCKqgoNRfelhAprwj1mez//o4J7vJc2Sd4tVCSm82/1Zxcl0F6C2SM/rV5+OCy+wkx3xkN7EPuK8zlqC7COrpKD4t3XoHj01d4ztfqWpBYS9Kz8jk0Q5eccriMye84+c8RGiuIYwpthbjkQOU1hBrKBhdv5jRCHcpOu/y1prEJvgXggQhI8U7epGQbJ7mrXh07Cbj3F/MASlc8Sa/aW1DVWpjpiLWMruHjwe9jCD1TQc4qT/nhWwIUyogyQlGwmzJ81w9ePuqDg6P72vcEGNgOgm/xyUmFBITFqO18R7PhWWitz5Hv/ZQO+SqbEiOg6DK3e4xUKb9ljR3PvpkHVDkfif/rj7eZTYE4/xcmx56cDHMoWeBMBtuG3t/MGretBTPIzqkyPCPvn5WTD3RY6Xvd3hkXJRBUNj2htFhXBZ+WuZyXK//sA3g16NoicdKjCsaZSE++1k=
+  file: www.zip
+  skip_cleanup: true
+  on:
+    repo: chavo1/hello-ember
+    tags: true
