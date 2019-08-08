@@ -7,7 +7,7 @@
 - Install [Terraform](https://www.terraform.io/)
 ## 
 
-<img src="screenshots/diagram.png" width="720" height="405"
+<img src="screenshots/diagram.png" width="720" height="405">
 
 
 ### How to use it
