@@ -11,13 +11,18 @@ cache:
 env:
   global:
   - JOBS=1
-script:
+  
+install:
 - pushd www/
 - npm install
 - npm ci
 - npm test
 - npm start &
 - sleep 20
+- popd
+
+script:
+- pushd www/
 - bash test.sh
 - popd
 
